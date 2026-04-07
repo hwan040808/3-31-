@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLANK SPACE | 공간과 패션의 연결</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* 감각적인 폰트 적용 */
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap');
+        body { font-family: 'Noto Sans KR', sans-serif; background-color: #f8f9fa; }
+        
+        /* 부드러운 화면 전환 애니메이션 */
+        .fade-in { animation: fadeIn 0.8s ease-in-out forwards; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* 화면 숨김 처리용 클래스 */
+        .hidden-page { display: none !important; }
+    </style>
+</head>
+<body class="text-[#212529]">
+
+    <div id="mainPage" class="h-screen flex flex-col justify-center items-center text-center fade-in px-6">
+        <h1 class="text-5xl md:text-6xl font-light tracking-widest mb-6">BLANK SPACE</h1>
+        <p class="text-lg md:text-xl text-gray-500 mb-12 font-light leading-relaxed">
+            비어있는 공간이 감각적인 패션 쇼룸으로.<br>
+            당신의 브랜드를 위한 완벽한 팝업 스테이지를 발견하세요.
+        </p>
+        
+        <button onclick="switchPage('detailPage')" class="inline-block px-10 py-4 bg-black text-white text-sm tracking-wider uppercase rounded-full hover:bg-gray-800 transition duration-300">
+            공간 탐색 시작하기
+        </button>
+    </div>
+
+    <div id="detailPage" class="hidden-page min-h-screen bg-white">
+        
+        <nav class="p-8 border-b border-gray-100">
+            <button onclick="switchPage('mainPage')" class="text-sm tracking-wider font-bold hover:text-gray-500 transition">
+                ← 메인으로 돌아가기
+            </button>
+        </nav>
+
+        <div class="max-w-5xl mx-auto px-8 py-16 grid grid-cols-1 md:grid-cols-2 gap-16">
+            <div class="h-[500px] rounded-2xl bg-cover bg-center shadow-lg" style="background-image: url('https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?auto=format&fit=crop&q=80');"></div>
+            
+            <div class="flex flex-col justify-center">
+                <span class="text-gray-400 text-sm tracking-widest uppercase mb-2">Suwon Haenggung-dong</span>
+                <h2 class="text-4xl font-light mb-8">구옥의 재해석, 빈티지 쇼룸</h2>
+                <p class="text-gray-600 leading-loose mb-10 font-light">
+                    세월의 흔적이 묻어나는 붉은 벽돌과 모던한 금속 집기가 대비를 이루는 매력적인 공간입니다. 스트릿 패션 브랜드나 감각적인 라이프스타일 팝업스토어에 완벽하게 어울립니다.
+                </p>
+                
+                <div class="grid grid-cols-2 gap-4 mb-10 text-sm border-t border-gray-100 pt-6">
+                    <div><strong>면적:</strong> 35평</div>
+                    <div><strong>최소 대관:</strong> 3일</div>
+                    <div><strong>특징:</strong> 전면 통유리, 핀 조명</div>
+                </div>
+
+                <button onclick="alert('가상의 예약 시스템입니다. 과제 제출용으로 완벽하게 작동합니다!')" class="w-full py-4 border border-black text-center hover:bg-black hover:text-white transition duration-300">
+                    이 공간 예약하기
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function switchPage(targetPageId) {
+            // 모든 페이지 숨기기
+            document.getElementById('mainPage').classList.add('hidden-page');
+            document.getElementById('detailPage').classList.add('hidden-page');
+            
+            // 사용자가 클릭한 페이지만 보여주기
+            const targetPage = document.getElementById(targetPageId);
+            targetPage.classList.remove('hidden-page');
+            
+            // 페이지가 나타날 때마다 페이드인 애니메이션 재실행
+            targetPage.classList.remove('fade-in');
+            void targetPage.offsetWidth; // 애니메이션 초기화를 위한 트릭
+            targetPage.classList.add('fade-in');
+            
+            // 화면 최상단으로 스크롤 이동
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>
